@@ -12,3 +12,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.mainContent {
+  min-height: 500px;
+  width: 1240px;
+  margin: 0 auto;
+}
+
+.mainArea {
+  width: 1240px;
+  margin: 0 auto;
+}
+
+input {
+  outline: none;
+  border: none;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
