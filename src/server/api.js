@@ -50,3 +50,19 @@ export function getUserInfo() {
     console.error(error);
   }
 }
+
+export function getOrderList() {
+  try {
+    return $.get(`${HOST}/order?include=items,shipping_adjustment`, {});
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export function getMyOrderList(params) {
+  try {
+    return $.get(`${HOST}/orders?include=items`, params);
+  } catch (error) {
+    console.error(error);
+  }
+}

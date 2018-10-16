@@ -1,8 +1,5 @@
 // avatar less
 .avatar {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
   overflow: hidden;
   img {
     width: 100%;
@@ -66,5 +63,63 @@
   border-bottom: 1px solid #cacaca;
   img {
     width: 195px;
+  }
+}
+
+
+// my-order-item user center order item
+.my-order-item {
+  border: 1px solid #e9e9e9;
+  margin-bottom: 30px;
+  .status {
+    padding: 0 30px;
+    height: 54px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e9e9e9;
+    .status-desc {
+      color: #696969;
+    }
+    a {
+      color: #696969;
+    }
+  }
+  .total {
+    height: 88px;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .total-price {
+      font-size: 16px;
+      color: #696969;
+    }
+  }
+}
+
+.my-order-product-item {
+  padding: 20px;
+  border-bottom: 1px solid #e9e9e9;
+  display: flex;
+  .pro-img {
+    width: 110px;
+    height: 84px;
+    border: 1px solid #e9e9e9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    img {
+      width: 90%;
+    }
+  }
+  .pro-info {
+    font-size: 14px;
+    line-height: 22px;
+    color: #a0a0a0;
+    .pro-name {
+      color: #353535;
+    }
   }
 }

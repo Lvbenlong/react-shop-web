@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
-class Address extends Component {
+
+class Order extends Component {
   constructor(props) {
     super(props);
     this.state = {  };
   }
-  componentDidMount() {
-  }
   render() {
     return (
-      <p>
-        Address
-      </p>
+      <div>
+        order details
+        {this.props.match.params.number}
+      </div>
     );
   }
 }
 
-export default Address;
+export default Order;

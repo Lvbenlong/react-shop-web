@@ -26,7 +26,7 @@ class Header extends Component {
           <Link to="/wishlist" className="wishlist" >Wish list</Link>
           {
             this.props.userinfo.id ? (
-              <Link to="/user" className="login" >{this.props.userinfo.email}</Link>
+              <Link to="/user/order" className="login" >{this.props.userinfo.email}</Link>
             ) : (
               <Link to="/login" className="login" >Sign in</Link>
             )

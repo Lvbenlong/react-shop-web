@@ -12,6 +12,7 @@ import User from './pages/User/Index'
 import Order from './pages/User/Order'
 import Coupons from './pages/User/Coupons'
 import Address from './pages/User/Address'
+import OrderDetail from './pages/Order'
 
 const routes = [
   {
@@ -56,11 +57,11 @@ const routes = [
     component: About,
   },
   {
-    path: '/user',
+    path: '/user/:tool',
     component: User,
     routes: [
       {
-        path: '/user/',
+        path: '/user/order',
         component: Order,
       },
       {
@@ -72,6 +73,10 @@ const routes = [
         component: Address,
       },
     ]
+  },
+  {
+    path: '/order/:number',
+    component: OrderDetail,
   },
 ]
 
