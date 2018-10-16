@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as userinfoActions from '../actions/userinfo';
 import '../assets/less/header.less'
 
 class Header extends Component {
@@ -21,11 +24,30 @@ class Header extends Component {
         </div>
         <div className="info">
           <Link to="/wishlist" className="wishlist" >Wish list</Link>
-          <Link to="/login" className="login" >Sign in</Link>
+          {
+            this.props.userinfo.id ? (
+              <Link to="/user" className="login" >{this.props.userinfo.email}</Link>
+            ) : (
+              <Link to="/login" className="login" >Sign in</Link>
+            )
+          }
+          
         </div>
       </header>
     );
   }
 }
 
-export default Header;
+function mapStateToProps(state) {
+  return {
+    userinfo: state.userinfo,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    userinfoActions: bindActionCreators(userinfoActions, dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

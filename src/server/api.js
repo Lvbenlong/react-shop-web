@@ -18,3 +18,35 @@ export function getVideoList(params) {
     console.error(error);
   }
 }
+
+export function getCategry() {
+  try {
+    return $.get(`${HOST}/taxons?treed=1&include=children`);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export function getDeals() {
+  try {
+    return $.get(`${HOST}/deals`);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export function userLogin(params) {
+  try {
+    return $.post(`${HOST}/auth`, params);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export function getUserInfo() {
+  try {
+    return $.get(`${HOST}/user`, {});
+  } catch (error) {
+    console.error(error);
+  }
+}

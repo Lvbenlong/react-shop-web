@@ -1,12 +1,20 @@
 import {fetch as fetchPolyfill} from 'whatwg-fetch'
+import storage from '../utils/storage'
+import { generateUuid } from '../utils/tool'
 
 function cfg() {
   // const token = Token ? `Bearer ${Token}` : '';
+  let uuid = storage.get('uuid')
+  let token = storage.get('token')
+  if (!uuid) {
+    uuid = generateUuid()
+    storage.set('uuid', uuid)
+  }
   const header = {
     Accept: 'application/x.bestshop.v1+json',
     'Content-Type': 'application/json',
-    Authorization: 'token',
-    Uuid: '3743ef45-c358-4aec-85d7-542509bc47a1'
+    Authorization: `Bearer ${token}`,
+    Uuid: uuid
   };
   return header;
 }

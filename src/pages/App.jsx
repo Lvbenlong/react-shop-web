@@ -1,37 +1,23 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import routes from '../routes'
-import Header from '../components/Header'
+import { Provider } from 'react-redux';
+import configureStore from '../store/ConfigureStore';
+import Setup from './Setup'
 
-class Home extends Component {
+const store = configureStore()
+
+class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {  };
+    this.state = {};
   }
+  
   render() {
     return (
-      <Router>
-        <div>
-          <Header />
-          <div>
-            {/* 这里是使用嵌套路由+子路由的写法 */}
-            {
-              routes.map((route, key) => {
-                if (route.exact) {
-                  return <Route exact path={route.path} key={key} render={props => (<route.component {...props} routes={route.routes} />)} />
-                } else {
-                  return <Route path={route.path} key={key} render={props => (<route.component {...props} routes={route.routes} />)} />
-                }
-              })
-            }
-          </div>
-          <footer>
-            This is footer
-          </footer>
-        </div>
-      </Router>
+      <Provider store={store}>
+        <Setup />
+      </Provider>
     );
   }
 }
 
-export default Home;
+export default App;
