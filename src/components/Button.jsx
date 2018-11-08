@@ -7,10 +7,10 @@ class Button extends Component {
   }
   render() {
     const style = {
-      width: `${this.props.style.width}px`,
-      height: `${this.props.style.height}px`,
-      backgroundColor: `${this.props.style.bgcolor}`,
-      color: `${this.props.style.color}`,
+      width: this.props.style ? `${this.props.style.width}px` : '100%',
+      height: this.props.style ? `${this.props.style.height}px` : '48px',
+      backgroundColor: this.props.style ? `${this.props.style.bgcolor}` : '#f4bc1c',
+      color: this.props.style ? `${this.props.style.color}` : '#fff',
     }
     const defaultStyle = {
       borderRadius: `4px`,
@@ -20,7 +20,7 @@ class Button extends Component {
       cursor: 'pointer'
     }
     return (
-      <div style={{...style, ...defaultStyle }} >{this.props.text}</div>
+      <div style={{...style, ...defaultStyle }} onClick={this.props.btnClick}>{this.props.text}</div>
     );
   }
 }

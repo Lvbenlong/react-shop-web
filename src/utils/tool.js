@@ -13,3 +13,13 @@ export function generateUuid () {
     return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16)
   })
 }
+
+// 处理location search ： ?taxon_slug=jiao-cai&taxon_name=%E6%95%99%E6%9D%90
+export function sortURLToObj(url) {
+  let obj = {}
+  url.substring(1).split('&').map((item) => {
+    let val = item.split('=')
+    obj[val[0]] = val[1]
+  })
+  return obj
+}

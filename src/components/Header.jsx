@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as userinfoActions from '../actions/userinfo';
@@ -8,7 +8,24 @@ import '../assets/less/header.less'
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = {  };
+    this.state = {
+      searchText: ''
+    };
+  }
+  handleSearch(e) {
+    if (e.keyCode === 13) {
+      let q = this.state.searchText
+      this.setState({
+        searchText: ''
+      })
+      this.searchEl.blur()
+      this.props.history.push(`/products?q=${q}`)
+    }
+  }
+  handleText(e) {
+    this.setState({
+      searchText: e.target.value
+    })
   }
   render() {
     return (
@@ -19,7 +36,7 @@ class Header extends Component {
           </Link>
           <span className="category">Category</span>
           <div className="search">
-            <input type="text" placeholder="search" />
+            <input type="text" ref={el => this.searchEl = el} onChange={this.handleText.bind(this)} value={this.state.searchText} placeholder="search" onKeyDown={this.handleSearch.bind(this)} />
           </div>
         </div>
         <div className="info">
@@ -50,4 +67,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));

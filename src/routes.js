@@ -2,6 +2,9 @@ import Home from './pages/Home'
 import Wishlist from './pages/Wishlist'
 import Login from './pages/Login'
 import Product from './pages/Product'
+import ProductDetails from './pages/ProductDetails'
+import ProductAttributes from './pages/ProductAttributes'
+import ProductReviews from './pages/ProductReviews'
 import ProductList from './pages/ProductList'
 import DealDetail from './pages/DealDetail'
 import Ask from './pages/Ask'
@@ -35,6 +38,20 @@ const routes = [
   {
     path: '/product/:slug',
     component: Product,
+    routes: [
+      {
+        path: '/product/:slug/',
+        component: ProductDetails,
+      },
+      {
+        path: '/product/:slug/attributes',
+        component: ProductAttributes,
+      },
+      {
+        path: '/product/:slug/reviews',
+        component: ProductReviews,
+      },
+    ]
   },
   {
     path: '/deals/:slug',

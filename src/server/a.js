@@ -1,6 +1,7 @@
-import $ from '../utils/https';
-
+import $ from './http'
 const HOST = 'http://123.207.65.111:8001/api';
+
+
 // const HOST = 'http://api.bestshop.test/api';
 // const UPLOAD_IMAGE_URL = 'http://api.bestshop.test/images';
 const UPLOAD_IMAGE_URL = 'http://api.bestshop.test/images';

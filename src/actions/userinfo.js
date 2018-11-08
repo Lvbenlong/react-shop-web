@@ -19,17 +19,3 @@ export function update(data) {
     data,
   };
 }
-
-/* export function deleteToWish(data) {
-  return {
-    type: actionTypes.DELETE_HISTORY_TO_WISH_LIST,
-    data,
-  };
-}
-
-export function deleteData(id) {
-  return {
-    type: actionTypes.DELETE_HISTORY_LIST,
-    id,
-  };
-} */

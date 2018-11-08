@@ -37,9 +37,10 @@ export function getDeals() {
 
 export function userLogin(params) {
   try {
+    console.log('111')
     return $.post(`${HOST}/auth`, params);
   } catch (error) {
-    console.error(error);
+    throw error
   }
 }
 

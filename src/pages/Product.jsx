@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-class Wishlist extends Component {
+import { Route, Link } from 'react-router-dom'
+
+class Product extends Component {
   constructor(props) {
     super(props);
     this.state = {  };
@@ -9,12 +11,22 @@ class Wishlist extends Component {
   }
   render() {
     return (
-      <p>
-        Wishlist
-        {this.props.match.params.slug}
-      </p>
+      <div className="mainArea">
+        <p>
+          <Link to={`/product/${this.props.match.params.slug}/`}>detail</Link>
+          <Link to={`/product/${this.props.match.params.slug}/attributes`}>attributes</Link>
+          <Link to={`/product/${this.props.match.params.slug}/reviews`}>reviews</Link>
+        </p>
+        <div>
+          {
+            this.props.routes.map((route,key)=>{
+              return  <Route key={key} exact path={route.path} component={route.component} />
+            })
+          }
+        </div>
+      </div>
     );
   }
 }
 
-export default Wishlist;
+export default Product;

@@ -18,6 +18,27 @@ function cfg() {
   return header;
 }
 
+/**** 
+ * 这主要是由fetch返回promise导致的，
+ * 因为fetch返回的promise在某些错误的http状态下如400、500等不会reject，
+ * 相反它会被resolve；
+ * 只有网络错误会导致请求不能完成时，fetch 才会被 reject；
+ * 所以一般会对fetch请求做一层封装，
+*/
+async function checkStatus(response) {
+  console.log(response)
+  if (response.status >= 200 && response.status < 300) {
+    return response;
+  }
+  // 拦截401 权限跳转至登录页
+  if (response.status === 401) {
+    window.location.href='/login'
+  }
+  const error = new Error(response)
+  error.message = (await response.json()).errors
+  throw error;
+}
+
 export default class HTTP {
   static get(url, params) {
     if (params) {
@@ -35,14 +56,8 @@ export default class HTTP {
       method: 'GET',
       headers: cfg(),
     })
+      .then(checkStatus)
       .then(response => response.json())
-      .then(responseJson => {
-        if (responseJson.status_code === 401) {
-          window.location.href='/login'
-        } else {
-          return responseJson
-        }
-      })
       .catch((error) => {
         console.error('error');
         console.error(error);
@@ -56,10 +71,11 @@ export default class HTTP {
       headers: cfg(),
       body: JSON.stringify(params),
     })
+    .then(checkStatus)
       .then(response => response.json())
-      .then(responseJson => responseJson)
       .catch((error) => {
-        console.log(`error = ${error}`);
+        console.log(error)
+        throw error
       });
   }
 
@@ -77,11 +93,6 @@ export default class HTTP {
       body: formdata,
     })
       .then(response => response.json())
-      .then((responseJson) => {
-        console.log(responseJson);
-        console.log('image uploaded');
-        return responseJson;
-      })
       .catch((err) => {
         console.log(err);
       });
@@ -96,7 +107,6 @@ export default class HTTP {
       body: JSON.stringify(params),
     })
       .then(response => response.json())
-      .then(responseJson => responseJson)
       .catch((error) => {
         console.log(`error = ${error}`);
       });
@@ -109,7 +119,6 @@ export default class HTTP {
       headers: cfg(),
     })
       .then(response => response.json())
-      .then(responseJson => responseJson)
       .catch((error) => {
         console.log(`error = ${error}`);
       });
